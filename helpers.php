@@ -3,7 +3,7 @@
 if (! function_exists('app')) {
     function app(?string $abstract = null): mixed
     {
-        $app = \Alphavel\Core\Application::getInstance();
+        $app = \Alphavel\Framework\Application::getInstance();
 
         return $abstract ? $app->make($abstract) : $app;
     }

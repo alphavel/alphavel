@@ -1,8 +1,8 @@
 <?php
 
-namespace Alphavel\Core\Console\Commands;
+namespace Alphavel\Framework\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 class MakeCommandCommand extends Command
 {
@@ -63,7 +63,7 @@ class MakeCommandCommand extends Command
 
 namespace App\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 class {$name} extends Command
 {

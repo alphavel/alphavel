@@ -1,10 +1,10 @@
 <?php
 
-namespace Alphavel\Core;
+namespace Alphavel\Framework;
 
 use Psr\Container\ContainerInterface;
-use Alphavel\Core\Exceptions\NotFoundException;
-use Alphavel\Core\Exceptions\ContainerException;
+use Alphavel\Framework\Exceptions\NotFoundException;
+use Alphavel\Framework\Exceptions\ContainerException;
 
 class Container implements ContainerInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Alphavel\Core\Console\Commands;
+namespace Alphavel\Framework\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 /**
  * List Routes Command
@@ -27,9 +27,9 @@ class RouteListCommand extends Command
         }
 
         require_once dirname(__DIR__, 2) . '/Core/Loader.php';
-        \Alphavel\Core\Loader::init();
+        \Alphavel\Framework\Loader::init();
 
-        $router = \Alphavel\Core\Loader::load('Router');
+        $router = \Alphavel\Framework\Loader::load('Router');
 
         require $routesFile;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Alphavel\Core;
+namespace Alphavel\Framework;
 
 class Router
 {

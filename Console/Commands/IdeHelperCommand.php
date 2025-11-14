@@ -1,8 +1,8 @@
 <?php
 
-namespace Alphavel\Core\Console\Commands;
+namespace Alphavel\Framework\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 /**
  * IDE Helper Generator
@@ -82,7 +82,7 @@ namespace // Facades removidas - usar app() helper {
      * 
      * @see \Alphavel\Database\Database
      */
-    class DB extends \Alphavel\Core\Facade {}
+    class DB extends \Alphavel\Framework\Facade {}
 
     /**
      * @method static mixed get(string $key, mixed $default = null)
@@ -97,7 +97,7 @@ namespace // Facades removidas - usar app() helper {
      * 
      * @see \Alphavel\Database\Cache
      */
-    class Cache extends \Alphavel\Core\Facade {}
+    class Cache extends \Alphavel\Framework\Facade {}
 
     /**
      * @method static void info(string $message, array $context = [])
@@ -106,18 +106,18 @@ namespace // Facades removidas - usar app() helper {
      * @method static void debug(string $message, array $context = [])
      * @method static void log(string $level, string $message, array $context = [])
      * 
-     * @see \Alphavel\Core\Logger
+     * @see \Alphavel\Framework\Logger
      */
-    class Log extends \Alphavel\Core\Facade {}
+    class Log extends \Alphavel\Framework\Facade {}
 
     /**
      * @method static void dispatch(string $event, mixed $data = null)
      * @method static void listen(string $event, callable $listener)
      * @method static array getListeners(string $event)
      * 
-     * @see \Alphavel\Core\Event
+     * @see \Alphavel\Framework\Event
      */
-    class Event extends \Alphavel\Core\Facade {}
+    class Event extends \Alphavel\Framework\Facade {}
 }
 PHP;
     }
@@ -130,7 +130,7 @@ if (!function_exists('app')) {
      * Get container instance or resolve a service
      * 
      * @param string|null $abstract
-     * @return mixed|\Alphavel\Core\Container
+     * @return mixed|\Alphavel\Framework\Container
      */
     function app(?string $abstract = null) {}
 }
@@ -174,7 +174,7 @@ if (!function_exists('collect')) {
      * Create a collection from array
      * 
      * @param array $items
-     * @return \Alphavel\Core\Collection
+     * @return \Alphavel\Framework\Collection
      */
     function collect(array $items = []) {}
 }
@@ -205,7 +205,7 @@ if (!function_exists('response')) {
      * 
      * @param mixed $content
      * @param int $status
-     * @return \Alphavel\Core\Response
+     * @return \Alphavel\Framework\Response
      */
     function response(mixed $content = '', int $status = 200) {}
 }
@@ -216,7 +216,7 @@ if (!function_exists('json')) {
      * 
      * @param mixed $data
      * @param int $status
-     * @return \Alphavel\Core\Response
+     * @return \Alphavel\Framework\Response
      */
     function json(mixed $data, int $status = 200) {}
 }
@@ -227,7 +227,7 @@ if (!function_exists('redirect')) {
      * 
      * @param string $url
      * @param int $status
-     * @return \Alphavel\Core\Response
+     * @return \Alphavel\Framework\Response
      */
     function redirect(string $url, int $status = 302) {}
 }

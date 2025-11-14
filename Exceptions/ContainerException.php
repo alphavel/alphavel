@@ -1,6 +1,6 @@
 <?php
 
-namespace Alphavel\Core\Exceptions;
+namespace Alphavel\Framework\Exceptions;
 
 use Psr\Container\ContainerExceptionInterface;
 

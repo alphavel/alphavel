@@ -1,8 +1,8 @@
 <?php
 
-namespace Alphavel\Core\Console\Commands;
+namespace Alphavel\Framework\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 /**
  * Route Cache Command

@@ -1,6 +1,6 @@
 <?php
 
-namespace Alphavel\Core;
+namespace Alphavel\Framework;
 
 abstract class ServiceProvider
 {
@@ -140,7 +140,7 @@ abstract class ServiceProvider
     private function generateFacadeClass(string $alias, string $accessor): string
     {
         return <<<PHP
-class {$alias} extends \Alphavel\Core\Facade
+class {$alias} extends \Alphavel\Framework\Facade
 {
     protected static function getFacadeAccessor(): string
     {

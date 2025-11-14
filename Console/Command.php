@@ -1,6 +1,6 @@
 <?php
 
-namespace Alphavel\Core\Console;
+namespace Alphavel\Framework\Console;
 
 /**
  * Console Command Base (Artisan-like)

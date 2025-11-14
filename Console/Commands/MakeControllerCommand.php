@@ -1,8 +1,8 @@
 <?php
 
-namespace Alphavel\Core\Console\Commands;
+namespace Alphavel\Framework\Console\Commands;
 
-use Alphavel\Core\Console\Command;
+use Alphavel\Framework\Console\Command;
 
 /**
  * Make Controller Command
@@ -62,8 +62,8 @@ class MakeControllerCommand extends Command
         return <<<PHP
 <?php
 
-use Alphavel\Core\Request;
-use Alphavel\Core\Response;
+use Alphavel\Framework\Request;
+use Alphavel\Framework\Response;
 
 /**
  * {$name}
@@ -131,7 +131,7 @@ PHP;
         return <<<PHP
 <?php
 
-use Alphavel\Core\Request;
+use Alphavel\Framework\Request;
 
 /**
  * {$name}
@@ -169,8 +169,8 @@ PHP;
         return <<<PHP
 <?php
 
-use Alphavel\Core\Request;
-use Alphavel\Core\Response;
+use Alphavel\Framework\Request;
+use Alphavel\Framework\Response;
 
 /**
  * {$name} - RESTful Resource Controller
