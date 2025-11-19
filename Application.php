@@ -18,8 +18,6 @@ class Application
 
     private array $config = [];
 
-    private array $controllers = [];
-
     private array $requestPool = [];
 
     private function __construct()
@@ -208,12 +206,10 @@ class Application
     {
         [$controller, $method] = $route['handler'];
 
-        // Singleton Controller: Reuse controller instance
-        if (!isset($this->controllers[$controller])) {
-            $this->controllers[$controller] = new $controller();
-        }
-        
-        $instance = $this->controllers[$controller];
+        // Transient Pattern: Create new instance per request
+        // Prevents state leakage between requests while maintaining
+        // excellent performance thanks to PHP 8+ JIT optimization
+        $instance = new $controller();
 
         return $instance->$method($request, ...array_values($route['params'] ?? []));
     }
