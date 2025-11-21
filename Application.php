@@ -203,6 +203,17 @@ class Application
             return;
         }
 
+        // 🚀 RAW ROUTE: Ultra-fast path (zero overhead)
+        if ($route['handler'] === '__RAW__') {
+            $this->handleRawRoute($route['raw_config'], $request, $response);
+            
+            // Recycle request
+            if (count($this->requestPool) < 1024) {
+                $this->requestPool[] = $psr;
+            }
+            return;
+        }
+
         try {
             $result = $this->make('pipeline')
                 ->send($psr)
@@ -222,6 +233,36 @@ class Application
             if (class_exists(\Alphavel\Database\DB::class)) {
                 \Alphavel\Database\DB::release();
             }
+        }
+    }
+
+    /**
+     * Handle raw route with zero overhead
+     * Bypasses entire framework stack for maximum performance
+     */
+    private function handleRawRoute(array $config, $request, $response): void
+    {
+        $handler = $config['handler'];
+        $contentType = $config['content_type'];
+
+        $response->header('Content-Type', $contentType);
+
+        // String: Direct output
+        if (is_string($handler)) {
+            $response->end($handler);
+            return;
+        }
+
+        // Array: JSON encode
+        if (is_array($handler)) {
+            $response->end(json_encode($handler));
+            return;
+        }
+
+        // Closure: Full control over Swoole request/response
+        if ($handler instanceof \Closure) {
+            $handler($request, $response);
+            return;
         }
     }
 
