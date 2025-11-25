@@ -157,8 +157,12 @@ class Application
 
         $host = $this->config('server.host', '0.0.0.0');
         $port = $this->config('server.port', 9999);
+        
+        // 🚀 PERFORMANCE: Support BASE mode (faster for HTTP/REST APIs)
+        $mode = $this->config('server.mode', 'base');
+        $swooleMode = strtolower($mode) === 'base' ? SWOOLE_BASE : SWOOLE_PROCESS;
 
-        $this->server = new Server($host, $port);
+        $this->server = new Server($host, $port, $swooleMode);
 
         $this->server->set([
             'worker_num' => $this->config('server.workers', function_exists('swoole_cpu_num') ? swoole_cpu_num() * 2 : 8),
