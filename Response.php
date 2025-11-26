@@ -40,7 +40,11 @@ class Response
     public function json(mixed $data, int $status = 200): self
     {
         $this->header('Content-Type', 'application/json');
-        $this->content = json_encode($data);
+        // Optimize JSON encoding:
+        // - JSON_UNESCAPED_UNICODE: Don't escape unicode characters (smaller payload, faster)
+        // - JSON_UNESCAPED_SLASHES: Don't escape slashes (smaller payload)
+        // - JSON_THROW_ON_ERROR: Throw exception on error instead of silent failure
+        $this->content = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_THROW_ON_ERROR);
         $this->statusCode = $status;
 
         return $this;
