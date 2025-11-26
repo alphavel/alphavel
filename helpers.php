@@ -21,12 +21,48 @@ if (! function_exists('config')) {
 }
 
 if (! function_exists('env')) {
+    /**
+     * Get an environment variable value with proper type casting
+     * 
+     * Automatically converts string representations to their proper types:
+     * - "true", "(true)" → boolean true
+     * - "false", "(false)" → boolean false
+     * - "null", "(null)" → null
+     * - "empty", "(empty)" → empty string ""
+     * 
+     * This is critical for production environments where APP_DEBUG=false
+     * must be treated as boolean false, not the string "false" (truthy).
+     * 
+     * @param string $key Environment variable name
+     * @param mixed $default Default value if not found
+     * @return mixed The environment variable value with proper type
+     * 
+     * @example
+     * env('APP_DEBUG', false); // Returns boolean false if APP_DEBUG=false
+     * env('DB_PORT', 3306);    // Returns string "3306" or integer 3306
+     */
     function env(string $key, mixed $default = null): mixed
     {
         $value = $_ENV[$key] ?? $_SERVER[$key] ?? getenv($key);
 
         if ($value === false) {
             return $default;
+        }
+
+        // Type casting for common boolean/null strings
+        switch (strtolower($value)) {
+            case 'true':
+            case '(true)':
+                return true;
+            case 'false':
+            case '(false)':
+                return false;
+            case 'empty':
+            case '(empty)':
+                return '';
+            case 'null':
+            case '(null)':
+                return null;
         }
 
         return $value;
